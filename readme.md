@@ -3,12 +3,26 @@ Um portal para reunir ONGs e voluntários que defendem a causa animal. Na plataf
 
 O Mural do Bem visa conectar ONGs que precisam de ajuda e pessoas físicas dispostas a ajudar. O objetivo principal do mural do bem é um ambiente de fácil acesso, divulgação e propagação da informação. Conectando quem precisa de ajuda com quem está disposto a ajudar.
 
+# Projeto para estudos
+Este projeto de Portal Web está sendo desenvolvido para a disciplina de **Projeto Integrador: Portal Web**, referente ao curso de **Sitemas Para Internet - UNISINOS.**
+O projeto `ainda está em seu desenvolvimento` e, no momento, somente em fase inicial do seu Front-End.
+Porém, este Portal Web pode ser acessado agora para ter uma prévia através deste link: [Mural do Bem](http://mural-do-bem.vandervieira.com.br)
+
+### Rotas/Telas atualmente criadas
+`/` Inicial Home
+
+`/write` Postar algo no mural
+
+`/post/:id` Acessar um post pelo seu id
+
+Por estar somente com o front-end ainda, os posts estão mockados nas telas.
+
 ## Tecnologias
-> React
+* React
 
-> NodeJS
+* NodeJS
 
-> MySQL
+* MySQL
 
 ## Setup
 
