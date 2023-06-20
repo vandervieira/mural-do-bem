@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Single from "./pages/Single";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import axios from 'axios'
 import "./style.scss"
 
 const Layout = () => {
@@ -48,6 +49,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  axios.defaults.baseURL = 'http://localhost:8800/api';
   return (
     <div className="app">
       <div className="container">
