@@ -3,6 +3,8 @@ $lightGreen: #55bc6c;
 .app {
   display: flex;
   justify-content: center;
+  font-family: 'Arial', sans-serif;
+
   .container {
     width: 1024px;
 
@@ -10,6 +12,7 @@ $lightGreen: #55bc6c;
       text-decoration: none;
       color: inherit;
     }
+
     //LOGIN & REGISTER
     .auth {
       display: flex;
@@ -18,11 +21,13 @@ $lightGreen: #55bc6c;
       justify-content: center;
       height: 100vh;
       background-color: $lightGreen;
+
       h1 {
         font-size: 20px;
         color: teal;
         margin-bottom: 20px;
       }
+
       form {
         display: flex;
         flex-direction: column;
@@ -31,6 +36,7 @@ $lightGreen: #55bc6c;
         width: 200px;
         gap: 20px;
       }
+
       input {
         padding: 10px;
         border: none;
@@ -55,6 +61,33 @@ $lightGreen: #55bc6c;
         font-size: 12px;
         text-align: center;
       }
+
+      .file {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #e0e0e0;
+        color: #333;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .file:hover {
+        background-color: #ccc;
+      }
+
+      .file:focus {
+        outline: none;
+      }
+
+      /* Opcional: Ajuste a aparência do rótulo quando um arquivo for selecionado */
+      input[type="file"]:not([disabled])+.file::after {
+        content: attr(data-file-name);
+        margin-left: 10px;
+        font-size: 14px;
+        color: #777;
+      }
     }
 
     //NAVBAR
@@ -64,44 +97,55 @@ $lightGreen: #55bc6c;
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         .logo {
           img {
             width: 120px;
           }
         }
+
         .links {
           display: flex;
           align-items: center;
           gap: 20px;
+
           h6 {
             font-size: 16px;
             font-weight: 300;
           }
+
           span {
             cursor: pointer;
           }
+        }
 
-          .write {
-            background-color: $lightGreen;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 300;
-            border: 1px solid white;
-            &:hover {
-              color: teal;
-              background-color: white;
-              border: 1px solid teal;
-            }
+        .right-section {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
+
+        .write {
+          background-color: $lightGreen;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 300;
+          border: 1px solid white;
+
+          &:hover {
+            color: teal;
+            background-color: white;
+            border: 1px solid teal;
           }
         }
       }
     }
 
-    //FOOTER
+    // FOOTER
     footer {
       margin-top: 100px;
       padding: 20px;
@@ -110,10 +154,17 @@ $lightGreen: #55bc6c;
       align-items: center;
       justify-content: space-between;
       font-size: 12px;
+
       img {
         height: 50px;
       }
+
+      span {
+        white-space: pre-wrap;
+      }
     }
+
+
 
     //HOME
     .home {
@@ -150,7 +201,7 @@ $lightGreen: #55bc6c;
 
           img {
             width: 100%;
-            max-height: 400px;
+            height: 100%;
             object-fit: cover;
           }
         }
@@ -162,11 +213,11 @@ $lightGreen: #55bc6c;
           justify-content: space-between;
 
           h1 {
-            font-size: 48px;
+            font-size: 30px;
           }
 
           p {
-            font-size: 18px;
+            font-size: 15px;
           }
 
           button {
@@ -212,6 +263,7 @@ $lightGreen: #55bc6c;
           align-items: center;
           gap: 10px;
           font-size: 14px;
+
           img {
             width: 50px;
             height: 50px;
@@ -222,6 +274,7 @@ $lightGreen: #55bc6c;
           span {
             font-weight: bold;
           }
+
           p {
             font-size: 10px;
             color: #808080;
@@ -244,11 +297,13 @@ $lightGreen: #55bc6c;
           font-style: 42px;
           color: #333;
         }
+
         p {
           text-align: justify;
           line-height: 30px;
         }
       }
+
       .menu {
         flex: 2;
         display: flex;
@@ -274,6 +329,13 @@ $lightGreen: #55bc6c;
           h2 {
             color: #555;
             margin: 0;
+            font-size: 20px;
+          }
+
+          p{
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 15px;
           }
 
           button {
@@ -341,28 +403,29 @@ $lightGreen: #55bc6c;
           font-size: 12px;
           color: #555;
 
-          h1{
+          h1 {
             font-size: 20px;
             margin: 0;
           }
 
-          .file{
+          .file {
             text-decoration: underline;
             cursor: pointer;
           }
 
-          .buttons{
+          .buttons {
             display: flex;
             justify-content: space-between;
 
-            :first-child{
+            :first-child {
               cursor: pointer;
               color: $lightGreen;
               background-color: white;
               border: 1px solid $lightGreen;
               padding: 3px 5px;
             }
-            :last-child{
+
+            :last-child {
               cursor: pointer;
               color: white;
               background-color: $lightGreen;
@@ -370,7 +433,8 @@ $lightGreen: #55bc6c;
               padding: 3px 5px;
             }
           }
-          .cat{
+
+          .cat {
             display: flex;
             align-items: center;
             gap: 2px;

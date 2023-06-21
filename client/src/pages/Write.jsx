@@ -36,13 +36,13 @@ const Write = () => {
           title,
           desc: value,
           cat,
-          img: file ? imgUrl : "",
+          img: file ? imgUrl : state.img,
         }, { withCredentials: true })
         : await axios.post(`/posts/`, {
           title,
           desc: value,
           cat,
-          img: file ? imgUrl : "",
+          img: file ? imgUrl : "postimgdefault.jpg",
           date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
         }, { withCredentials: true });
       navigate("/")
@@ -50,6 +50,7 @@ const Write = () => {
       console.log(err);
     }
   };
+  
   return (
     <div className="add">
       <div className="content">
@@ -88,7 +89,7 @@ const Write = () => {
         <div className="item">
           <h1>Categoria</h1>
           <div className="cat">
-            <input type="radio" checked={cat === "art"} name="cat" value="adote" id="adote" onChange={(e) => setCat(e.target.value)} />
+            <input type="radio" checked={cat === "adote"} name="cat" value="adote" id="adote" onChange={(e) => setCat(e.target.value)} />
             <label htmlFor="adote">Adote</label>
           </div>
           <div className="cat">

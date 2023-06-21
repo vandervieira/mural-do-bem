@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
+import DOMPurify from "dompurify";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -24,6 +25,13 @@ const Home = () => {
     return doc.body.textContent
   }
 
+  const limitText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + "...";
+    }
+    return text;
+  };
+
   return (
     <div className="home">
       <div className="posts">
@@ -34,9 +42,15 @@ const Home = () => {
             </div>
             <div className="content">
               <Link className="link" to={`/post/${post.id}`}>
-                <h1>{post.title}</h1>
+                <h1 dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(limitText(post.title, 100)),
+                }} />
               </Link>
-              <p>{getText(post.desc)}</p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(limitText(post.desc, 450)),
+                }}
+              />
               <Link className="link" to={`/post/${post.id}`}>
                 <button>Ler mais</button>
               </Link>

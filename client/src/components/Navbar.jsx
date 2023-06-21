@@ -9,13 +9,11 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="container">
-        <Link className="linkHome" to="/">
-          <div className="logo">
-            <Link to="/">
-              <img src={Logo} alt="logo" />
-            </Link>
-          </div>
-        </Link>
+        <div className="logo">
+          <Link to="/">
+            <img src={Logo} alt="logo" />
+          </Link>
+        </div>
         <div className="links">
           <Link className="link" to="/?cat=adote">
             <h6>ADOTE</h6>
@@ -29,14 +27,18 @@ const Navbar = () => {
           <Link className="link" to="/?cat=materiaisdelimpeza">
             <h6>MATERIAIS DE LIMPEZA</h6>
           </Link>
-          <span>
-            <b>{currentUser?.username}</b>
-          </span>
+        </div>
+        <div className="right-section">
+          {currentUser && (
+            <span>
+              <b>{currentUser.username}</b>
+            </span>
+          )}
           {currentUser ? (
-            <span onClick={logout}>Sair</span>
+            <Link onClick={logout} className="link">Sair</Link>
           ) : (
             <Link className="link" to="/login">
-              Login
+              Entrar
             </Link>
           )}
           <span className="write">

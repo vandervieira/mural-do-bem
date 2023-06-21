@@ -1,4 +1,5 @@
 import axios from "axios";
+import DOMPurify from "dompurify";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -17,6 +18,13 @@ const Menu = ({ cat }) => {
     fetchData();
   }, [cat])
 
+  const limitText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.substring(0, maxLength) + "...";
+    }
+    return text;
+  };
+
 
   return (
     <div className="menu">
@@ -24,8 +32,15 @@ const Menu = ({ cat }) => {
       {posts.map((post) => (
         <div className="post">
           <img src={`../upload/${post?.img}`} alt="" />
-          <h2>{post.title}</h2>
-          <button>Ler mais</button>
+          <h2>{limitText(post.title, 50)}</h2>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(limitText(post.desc, 100)),
+            }}
+          ></p>
+          <Link className="link" to={`/post/${post.id}`}>
+            <button>Ler mais</button>
+          </Link>
         </div>
       ))}
     </div>

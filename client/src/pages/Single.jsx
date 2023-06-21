@@ -17,6 +17,7 @@ const Single = () => {
   const postId = location.pathname.split("/")[2];
 
   const { currentUser } = useContext(AuthContext);
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,12 +41,6 @@ const Single = () => {
       console.log(err);
     }
   }
-
-  const getText = (html) => {
-    const doc = new DOMParser().parseFromString(html, "text/html")
-    return doc.body.textContent
-  }
-
   return (
     <div className="single">
       <div className="content">
@@ -54,17 +49,19 @@ const Single = () => {
           alt=""
         />
         <div className="user">
-          {post.userImg && <img src={post.userImg} alt="" />}
+          <img src={post.userImg} alt="" />
           <div className="info">
             <span>{post.username}</span>
             <p>Postado {moment(post.date).fromNow()}</p>
           </div>
-          {currentUser.username === post.username && <div className="edit">
-            <Link to={`/write?edit=2`} state={post}>
-              <img src={Edit} alt="" />
-            </Link>
-            <img onClick={handleDelete} src={Delete} alt="" />
-          </div>}
+          {currentUser?.username === post.username && (
+            <div className="edit">
+              <Link to={`/write?edit=2`} state={post}>
+                <img src={Edit} alt="" />
+              </Link>
+              <img onClick={handleDelete} src={Delete} alt="" />
+            </div>
+          )}
         </div>
         <h1>{post.title}</h1>
         <p

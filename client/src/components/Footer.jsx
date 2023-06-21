@@ -6,7 +6,8 @@ const Footer = () => {
     <footer>
       <img src={Logo} alt="" />
       <span>
-        Feito com ❤️ e <b>React.js</b>.
+        Projeto desenvolvido para a disciplina:
+        <br />Projeto Integrador <b>Portal Web</b>.
       </span>
     </footer>
   );

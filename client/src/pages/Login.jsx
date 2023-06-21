@@ -7,7 +7,6 @@ const Login = () => {
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
-    credentials: 'include',
   });
 
   const [err, setError] = useState(null);
@@ -32,12 +31,12 @@ const Login = () => {
   };
   return (
     <div className="auth">
-      <h1>Login</h1>
+      <h1>Entrar</h1>
       <form>
         <input type="text" placeholder="username" name="username" onChange={handleChange} />
         <input type="password" placeholder="password" name="password" onChange={handleChange} />
         <button onClick={handleSubmit} className="authBtn">
-          Login
+          Entrar
         </button>
         {err && <p>{err}</p>}
         <span>
