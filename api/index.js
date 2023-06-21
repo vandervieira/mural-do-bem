@@ -5,6 +5,9 @@ import authRoutes from "./routes/auth.js"
 import usersRoutes from "./routes/users.js"
 import postRoutes from "./routes/posts.js"
 import multer from "multer"
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 const app = express()
 
@@ -33,6 +36,6 @@ app.use("/api/auth", authRoutes)
 app.use("/api/users", usersRoutes)
 app.use("/api/posts", postRoutes)
 
-app.listen(8800, () => {
+app.listen(process.env.APP_PORT, () => {
     console.log("Server is running on port 8800")
 })

@@ -34,7 +34,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const imgUrl = await upload();
-    inputs.img = imgUrl ? "/public/upload/" + imgUrl : "/public/upload/default.png";
+    inputs.img = imgUrl ? "/public/upload/" + imgUrl : "/public/upload/avatar.jpg";
     try {
       await axios.post("/auth/register", inputs);
       navigate('/login')

@@ -42,7 +42,7 @@ const Write = () => {
           title,
           desc: value,
           cat,
-          img: file ? imgUrl : "postimgdefault.jpg",
+          img: file ? imgUrl : "post.jpg",
           date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
         }, { withCredentials: true });
       navigate("/")
