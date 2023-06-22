@@ -49,7 +49,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  axios.defaults.baseURL = 'http://localhost:8800/api';
+  axios.defaults.baseURL = 'http://localhost:8800/api' || 'http://vandervieira.com.br:21006/api';
   return (
     <div className="app">
       <div className="container">

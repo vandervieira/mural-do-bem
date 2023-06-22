@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Logo from "../img/logo.png";
 
 const Register = () => {
   const [inputs, setInputs] = useState({
@@ -15,6 +16,10 @@ const Register = () => {
   const [err, setError] = useState(null);
 
   const navigate = useNavigate()
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  }
 
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -34,7 +39,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const imgUrl = await upload();
-    inputs.img = imgUrl ? "/public/upload/" + imgUrl : "/public/upload/avatar.jpg";
+    inputs.img = imgUrl ? "public/upload/" + imgUrl : "/public/defaults/avatar.jpg";
     try {
       await axios.post("/auth/register", inputs);
       navigate('/login')
@@ -47,25 +52,27 @@ const Register = () => {
 
   return (
     <div className="auth">
-      <h1>Cadastrar-se</h1>
+      <img src={Logo} alt="logo" />
+        
       <form>
+      <h1>Cadastrar-se</h1>
+        <label className={`upload-button ${file ? "file-selected" : ""}`} htmlFor="file">+</label>
         <input required type="text" placeholder="username" name="username" onChange={handleChange} />
         <input required type="email" placeholder="email" name="email" onChange={handleChange} />
         <input required type="password" placeholder="password" name="password" onChange={handleChange} />
-        <label className="file" htmlFor="file">Foto de perfil</label>
         <input
           style={{ display: "none" }}
           type="file"
           id="file"
-          name=""
-          onChange={(e) => setFile(e.target.files[0])}
+          name="file"
+          onChange={handleFileChange}
         />
         <button onClick={handleSubmit} className="authBtn">
           Cadastrar-se
         </button>
         {err && <p>{err}</p>}
         <span>
-          Já tem uma conta? <Link to="/login">Entrar</Link>
+          Já tem uma conta? <Link to="/login" className="navButton">Entrar</Link>
         </span>
       </form>
     </div>

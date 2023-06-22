@@ -5,15 +5,16 @@ import authRoutes from "./routes/auth.js"
 import usersRoutes from "./routes/users.js"
 import postRoutes from "./routes/posts.js"
 import multer from "multer"
+import path from 'path';
 import dotenv from 'dotenv';
-dotenv.config();
-
+const __dirname = path.resolve();
+dotenv.config({ path: path.join(__dirname, '/../.env') });
 
 const app = express()
 
 app.use(express.json())
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: process.env.ORIGIN,
     credentials: true, //To use cookies with axios we need to set the credentials to true
 }));
 app.use(cookieParser())
@@ -35,7 +36,10 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 app.use("/api/auth", authRoutes)
 app.use("/api/users", usersRoutes)
 app.use("/api/posts", postRoutes)
+app.get("/", (req, res) => {
+    res.json("API do Mural do Bem! Para mais informações acesse: github.com/vandervieira/mural-do-bem")
+})
 
 app.listen(process.env.APP_PORT, () => {
-    console.log("Server is running on port 8800")
+    console.log("Server rodando na porta ", process.env.APP_PORT)
 })

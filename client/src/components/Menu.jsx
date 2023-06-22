@@ -31,7 +31,7 @@ const Menu = ({ cat }) => {
       <h1>Outros posts sugeridos</h1>
       {posts.map((post) => (
         <div className="post">
-          <img src={`../upload/${post?.img}`} alt="" />
+          <img src={`../${post?.img}`} alt="" />
           <h2>{limitText(post.title, 50)}</h2>
           <p
             dangerouslySetInnerHTML={{

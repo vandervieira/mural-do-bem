@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
+import Logo from "../img/logo.png";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
@@ -31,8 +32,10 @@ const Login = () => {
   };
   return (
     <div className="auth">
-      <h1>Entrar</h1>
+      <img src={Logo} alt="logo" />
+
       <form>
+        <h1>Entrar</h1>
         <input type="text" placeholder="username" name="username" onChange={handleChange} />
         <input type="password" placeholder="password" name="password" onChange={handleChange} />
         <button onClick={handleSubmit} className="authBtn">
@@ -40,7 +43,7 @@ const Login = () => {
         </button>
         {err && <p>{err}</p>}
         <span>
-          Não tem uma conta? <Link to="/register">Cadastre-se</Link>
+          Não tem uma conta? <Link to="/register" className="navButton">Cadastre-se</Link>
         </span>
       </form>
     </div>

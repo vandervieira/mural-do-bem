@@ -36,13 +36,13 @@ const Write = () => {
           title,
           desc: value,
           cat,
-          img: file ? imgUrl : state.img,
+          img: file ? "public/upload/" + imgUrl : state.img,
         }, { withCredentials: true })
         : await axios.post(`/posts/`, {
           title,
           desc: value,
           cat,
-          img: file ? imgUrl : "post.jpg",
+          img: file ? "public/upload/" + imgUrl : "public/defaults/post.jpg",
           date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
         }, { withCredentials: true });
       navigate("/")

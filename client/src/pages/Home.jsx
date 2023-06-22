@@ -13,17 +13,13 @@ const Home = () => {
       try {
         const res = await axios.get(`/posts${cat}`, { withCredentials: true });
         setPosts(res.data);
+        console.log(res.data)
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
   }, [cat]);
-
-  const getText = (html) => {
-    const doc = new DOMParser().parseFromString(html, "text/html")
-    return doc.body.textContent
-  }
 
   const limitText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -38,7 +34,7 @@ const Home = () => {
         {posts.map((post) => (
           <div className="post" key={post.id}>
             <div className="img">
-              <img src={`../upload/${post.img}`} alt="" />
+              <img src={`${post.img}`} alt="" />
             </div>
             <div className="content">
               <Link className="link" to={`/post/${post.id}`}>

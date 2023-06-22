@@ -45,11 +45,11 @@ const Single = () => {
     <div className="single">
       <div className="content">
         <img
-          src={`../upload/${post?.img}`}
+          src={`../${post?.img}`}
           alt=""
         />
         <div className="user">
-          <img src={post.userImg} alt="" />
+          <img src={`../${post.userImg}`} alt="" />
           <div className="info">
             <span>{post.username}</span>
             <p>Postado {moment(post.date).fromNow()}</p>
