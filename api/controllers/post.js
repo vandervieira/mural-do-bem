@@ -7,6 +7,7 @@ export const getPosts = (req, res) => {
         : "SELECT * FROM posts";
 
     db.query(q, [req.query.cat], (err, data) => {
+        console.log(err)
         if (err) return res.status(500).send(err);
 
         return res.status(200).json(data);

@@ -41,11 +41,13 @@ const Navbar = () => {
               Entrar
             </Link>
           )}
-          <span className="write">
-            <Link className="link" to="/write">
-              Postar
-            </Link>
-          </span>
+          {currentUser &&
+            <span className="write">
+              <Link className="link" to="/write">
+                Postar
+              </Link>
+            </span>
+          }
         </div>
       </div>
     </div>

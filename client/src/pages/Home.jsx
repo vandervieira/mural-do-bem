@@ -13,7 +13,6 @@ const Home = () => {
       try {
         const res = await axios.get(`/posts${cat}`, { withCredentials: true });
         setPosts(res.data);
-        console.log(res.data)
       } catch (err) {
         console.log(err);
       }
@@ -31,7 +30,7 @@ const Home = () => {
   return (
     <div className="home">
       <div className="posts">
-        {posts.map((post) => (
+        {Array.isArray(posts) && posts.map((post) => (
           <div className="post" key={post.id}>
             <div className="img">
               <img src={`${post.img}`} alt="" />

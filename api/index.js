@@ -8,19 +8,19 @@ import multer from "multer"
 import path from 'path';
 import dotenv from 'dotenv';
 const __dirname = path.resolve();
-dotenv.config({ path: path.join(__dirname, '/../.env') });
+dotenv.config();
 
 const app = express()
 
 app.use(express.json())
 app.use(cors({
     origin: process.env.ORIGIN,
-    credentials: true, //To use cookies with axios we need to set the credentials to true
+    credentials: true, //Para utilizar cookies via Axios é necessário habilitar o cors credentials
 }));
 app.use(cookieParser())
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "../client/public/upload");
+        cb(null, "./uploads");
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + file.originalname);
@@ -30,13 +30,18 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 app.post("/api/upload", upload.single("file"), function (req, res) {
-    const file = req.file;
-    res.status(200).json(file.filename);
+    if (req.file) {
+        const file = req.file;
+        res.status(200).json(file.filename);
+    } else {
+        res.status(400).json("Nenhum arquivo foi enviado");
+    }
 });
 app.use("/api/auth", authRoutes)
 app.use("/api/users", usersRoutes)
 app.use("/api/posts", postRoutes)
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
+    console.log(req.method + ' ' + req.path + ' ', req.get('origin') ? 'ORIGIN:' + req.get('origin') : '')
     res.json("API do Mural do Bem! Para mais informações acesse: github.com/vandervieira/mural-do-bem")
 })
 

@@ -5,36 +5,52 @@ O Mural do Bem visa conectar ONGs que precisam de ajuda e pessoas físicas dispo
 
 # Projeto para estudos
 Este projeto de Portal Web está sendo desenvolvido para a disciplina de **Projeto Integrador: Portal Web**, referente ao curso de **Sitemas Para Internet - UNISINOS.**
-O projeto `ainda está em seu desenvolvimento` e, no momento, somente em fase inicial do seu Front-End.
+O projeto `ainda está em seu desenvolvimento`.
 Porém, este Portal Web pode ser acessado agora para ter uma prévia através deste link: [Mural do Bem](http://mural-do-bem.vandervieira.com.br)
 
 ### Rotas/Telas atualmente criadas
 `/` Inicial Home
 
-`/write` Postar algo no mural
+`/login` Para autenticar-se e possibilitar criar posts.
 
-`/post/:id` Acessar um post pelo seu id
+`/register` Para se cadastrar
 
-Por estar somente com o front-end ainda, os posts estão mockados nas telas.
+`/?cat=categoria` Para filtrar os posts no mural de acordo com o nome da cateogira
 
-## Tecnologias
-* React
+`/post/:id` Para acessar a pagina de um post especifico 
+
+`/write` Para criar um novo post
+
+
+## Tecnologias / Frameworks
+* React 
+
+* Vite
 
 * NodeJS
 
 * MySQL
 
+* Docker
+
 ## Setup
 
-Para subir o portal em sua máquina, após clonar o projeto, acesse o diretório `client`
+Para subir o portal em sua máquina, você precisa ter o docker-compose instalado.
+Após clonar o projeto, diretório raiz da aplicação, execute
+```
+docker-compose up -d
+```
 
-Será preciso instalar as dependências do projeto.
-No seu terminal execute o comando abaixo:
-```
-npm install
-```
-Após isso execute o projeto:
-```
-npm run dev
-```
-Por fim, no seu terminal será exibido um endereço `http://localhost:$PORT` com a porta gerada. Acesse este endereço para abrir o Portal Mural do Bem.
+Com isto o docker-compose irá subir trê containers:
+* API
+Container relacionado a aplicação NodeJS, que irá servir a API de backend do Mural do Bem.
+
+* CLIENT
+Container relacionado a aplicação React, que irá servir o frontend do Mural do Bem.
+
+* DB
+Container relacionado ao database MySQL MariaDB, que irá servir o banco de dados do Mural do Bem.
+
+Por fim, no seu terminal será exibido um endereço `http://localhost:5173/` com a porta gerada. Acesse este endereço para abrir o Portal Mural do Bem na sua máquina.
+
+Lembrando que atualmente há uma versão buildada e em "produção" para testar, link: [Mural do Bem](http://mural-do-bem.vandervieira.com.br)

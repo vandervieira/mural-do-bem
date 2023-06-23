@@ -1,0 +1,54 @@
+version: "3"
+services:
+  db:
+    image: mariadb:10.2.36
+    ports:
+      - target: 3306
+        published: 3306
+        protocol: tcp
+        mode: host
+    environment:
+      - MYSQL_ROOT_PASSWORD=xjek1i3nahgy7
+      - MYSQL_DATABASE=muraldobem
+      - MYSQL_USER=muraldobem
+      - MYSQL_PASSWORD=xjek1i3nahgy7
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+    networks:
+      - mural-network
+
+  api:
+    image: "node:20.3.1-slim"
+    working_dir: /usr/src/app
+    volumes:
+      - ./api:/usr/src/app
+      - upload-sync:/usr/src/app/uploads # Upload que esta dentro do container de API, sera salvo na pasta public/upload do container do client
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+    networks:
+      - mural-network
+    command: bash -c "npm i && npm start"
+
+  client:
+    image: "node:20.3.1-slim"
+    working_dir: /usr/src/app
+    volumes:
+      - ./client:/usr/src/app
+      - upload-sync:/usr/src/app/public/upload
+    ports:
+      - 5173:5173
+    depends_on:
+      - api
+    command: bash -c "npm i && npm start"
+
+networks:
+  mural-network:
+
+volumes:
+  mysql-data:
+  upload-sync:

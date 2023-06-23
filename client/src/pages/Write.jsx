@@ -28,24 +28,31 @@ const Write = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-    const imgUrl = await upload();
-
+    let imgUrl = null;
+  
+    if (file) {
+      imgUrl = await upload();
+    }
+  
     try {
-      state
-        ? await axios.put(`/posts/${state.id}`, {
-          title,
-          desc: value,
-          cat,
-          img: file ? "public/upload/" + imgUrl : state.img,
-        }, { withCredentials: true })
-        : await axios.post(`/posts/`, {
-          title,
-          desc: value,
-          cat,
-          img: file ? "public/upload/" + imgUrl : "public/defaults/post.jpg",
-          date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
-        }, { withCredentials: true });
-      navigate("/")
+      const postData = {
+        title,
+        desc: value,
+        cat,
+        img: file ? "public/upload/" + imgUrl : state?.img || "public/defaults/post.jpg",
+        date: moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
+      };
+  
+      const url = state ? `/posts/${state.id}` : "/posts/";
+  
+      await axios({
+        method: state ? "put" : "post",
+        url,
+        data: postData,
+        withCredentials: true,
+      });
+  
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
@@ -82,8 +89,8 @@ const Write = () => {
           />
           <label className="file" htmlFor="file">Upload de Imagem</label>
           <div className="buttons">
-            <button>Salvar rascunho</button>
-            <button onClick={handleClick}>Publish</button>
+            {/* <button>Salvar rascunho</button> */}
+            <button onClick={handleClick}>Publicar</button>
           </div>
         </div>
         <div className="item">

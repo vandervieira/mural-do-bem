@@ -1,10 +1,13 @@
 import axios from "axios";
 import DOMPurify from "dompurify";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Menu = ({ cat }) => {
   const [posts, setPosts] = useState([]);
+
+  const location = useLocation();
+  const postId = location.pathname.split("/")[2];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +32,7 @@ const Menu = ({ cat }) => {
   return (
     <div className="menu">
       <h1>Outros posts sugeridos</h1>
-      {posts.map((post) => (
+      {posts.map((post) => post.id != postId && (
         <div className="post">
           <img src={`../${post?.img}`} alt="" />
           <h2>{limitText(post.title, 50)}</h2>
